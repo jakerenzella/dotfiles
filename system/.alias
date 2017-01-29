@@ -1,0 +1,4 @@
+alias update_prezto="git -C ~/.zprezto pull && git -C ~/.zprezto submodule update --init --recursive"
+
+# Recursively remove .DS_Store files
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"

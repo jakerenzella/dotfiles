@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+# Get current dir (so run this script from anywhere)
+
+export DOTFILES_DIR EXTRA_DIR
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+EXTRA_DIR="$HOME/.extra"
+
+# Update dotfiles itself first
+
+[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+
+# Bunch of symlinks
+
+ln -sfv "$DOTFILES_DIR/runcom/.zshrc" ~
+ln -sfv "$DOTFILES_DIR/runcom/.zpreztorc" ~
+ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
+ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
+
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
 brew tap caskroom/versions
@@ -60,15 +77,6 @@ CASKS=(
   virtualbox
   vlc
 )
-
-echo "Installing fonts..."
-brew tap caskroom/fonts
-FONTS=(
-    font-inconsolidata
-    font-roboto
-    font-clear-sans
-)
-brew cask install ${FONTS[@]}
 
 echo "Installing cask apps..."
 brew cask install ${CASKS[@]}
