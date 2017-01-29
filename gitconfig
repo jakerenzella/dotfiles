@@ -1,0 +1,10 @@
+[user]
+	name = Jake Renzella
+	email = j@kerenzella.com
+[core]
+	editor = nano
+	excludesfile = /Users/jakerenzella/.gitignore_global
+[push]
+	default = simple
+[url "https://"]
+	insteadOf = git://
